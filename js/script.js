@@ -114,9 +114,10 @@
     }, { passive: true });
   }
 
-  /* ---------- Contact form (static, no backend) ---------- */
+  /* ---------- Contact form (submits via FormSubmit.co) ---------- */
   var contactForm = document.getElementById("contact-form");
   var successMessage = document.getElementById("form-success");
+  var errorMessage = document.getElementById("form-error");
 
   // Pre-select "Service Required" when arriving via a service's "Learn more"
   // link, e.g. contact.html?service=window
@@ -129,6 +130,8 @@
   }
 
   if (contactForm) {
+    var submitBtn = contactForm.querySelector('button[type="submit"]');
+
     contactForm.addEventListener("submit", function (e) {
       e.preventDefault();
 
@@ -137,11 +140,38 @@
         return;
       }
 
-      if (successMessage) {
-        successMessage.classList.add("show");
-        successMessage.scrollIntoView({ behavior: "smooth", block: "center" });
+      if (errorMessage) errorMessage.classList.remove("show");
+      if (successMessage) successMessage.classList.remove("show");
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Sending...";
       }
-      contactForm.reset();
+
+      fetch(contactForm.action, {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: new FormData(contactForm)
+      })
+        .then(function (response) {
+          if (!response.ok) throw new Error("Request failed");
+          if (successMessage) {
+            successMessage.classList.add("show");
+            successMessage.scrollIntoView({ behavior: "smooth", block: "center" });
+          }
+          contactForm.reset();
+        })
+        .catch(function () {
+          if (errorMessage) {
+            errorMessage.classList.add("show");
+            errorMessage.scrollIntoView({ behavior: "smooth", block: "center" });
+          }
+        })
+        .finally(function () {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = "Request a Quote";
+          }
+        });
     });
   }
 

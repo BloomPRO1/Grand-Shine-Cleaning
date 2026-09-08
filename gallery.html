@@ -66,17 +66,25 @@
   <div class="container">
     <span class="eyebrow">Gallery</span>
     <h1>A Closer Look at Our Work</h1>
-    <p>Our photo gallery is on its way — check back soon to see recent residential, commercial and specialty cleaning projects.</p>
+    <p>A look at recent residential, commercial and specialty cleaning projects.</p>
   </div>
 </section>
 
 <!-- ============ GALLERY ============ -->
-<!-- Photo gallery is intentionally empty for now. Real project photos will be
-     pulled in from a Google Drive folder once that upload workflow is set up,
-     so this page stays static-only until then. -->
+<!-- Photos are pulled live from a Google Drive folder (see js/gallery.js) so
+     the business owner can add photos just by dropping them in that folder —
+     no code changes or redeploys needed. -->
 <section class="section">
   <div class="container">
-    <div class="gallery-empty reveal">
+
+    <div class="gallery-loading" id="gallery-loading">
+      <div class="spinner"></div>
+      <p>Loading photos&hellip;</p>
+    </div>
+
+    <div class="gallery-grid" id="gallery-grid" hidden></div>
+
+    <div class="gallery-empty reveal" id="gallery-empty" hidden>
       <div class="gallery-empty-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="9.5" r="1.5"></circle><path d="M21 15l-5-5L5 21"></path></svg>
       </div>
@@ -84,8 +92,24 @@
       <p>We're putting together a collection of recent residential, commercial and specialty cleaning projects. Check back soon, or get in touch for references and before/after photos.</p>
       <a href="contact.html" class="btn btn-outline-navy">Contact Us</a>
     </div>
+
   </div>
 </section>
+
+<!-- ============ LIGHTBOX ============ -->
+<div class="lightbox" id="lightbox" hidden>
+  <button class="lightbox-close" id="lightbox-close" aria-label="Close">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+  </button>
+  <button class="lightbox-nav lightbox-prev" id="lightbox-prev" aria-label="Previous photo">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+  </button>
+  <button class="lightbox-nav lightbox-next" id="lightbox-next" aria-label="Next photo">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+  </button>
+  <img class="lightbox-image" id="lightbox-image" src="" alt="">
+  <div class="lightbox-caption" id="lightbox-caption"></div>
+</div>
 
 <!-- ============ CTA ============ -->
 <section class="cta-wrap no-top-pad">
@@ -167,5 +191,6 @@
 </footer>
 
 <script src="js/script.js"></script>
+<script src="js/gallery.js"></script>
 </body>
 </html>
