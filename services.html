@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>document.documentElement.classList.add('js');</script>
+<title>Services | Grand Shine Cleaning</title>
+<meta name="description" content="Explore Grand Shine Cleaning's full range of residential, commercial and specialty cleaning services, including move in/out, upholstery, window and carpet cleaning.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Crect width='42' height='42' rx='10' fill='%230b1f3f'/%3E%3Cpath d='M12 21.5L18 27L30 14' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3Ccircle cx='30' cy='14' r='2.2' fill='%236fa8dc'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="brand">
+      <svg class="brand-mark" viewBox="0 0 42 42" fill="none">
+        <rect width="42" height="42" rx="10" fill="#0b1f3f"/>
+        <path d="M12 21.5L18 27L30 14" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="30" cy="14" r="2.2" fill="#6fa8dc"/>
+      </svg>
+      <span class="brand-text">
+        <span class="brand-name">Grand Shine</span>
+        <span class="brand-sub">Cleaning Services</span>
+      </span>
+    </a>
+
+    <nav class="main-nav" id="main-nav">
+      <ul>
+        <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+        <li class="nav-item has-dropdown active">
+          <a href="services.html" class="nav-link dropdown-toggle active">
+            Services
+            <svg class="nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </a>
+          <ul class="dropdown">
+            <li><a href="services.html#move-in-move-out">Move In / Move Out Cleaning</a></li>
+            <li><a href="services.html#residential-cleaning">Residential Cleaning</a></li>
+            <li><a href="services.html#commercial-cleaning">Commercial Cleaning</a></li>
+            <li><a href="services.html#upholstery-cleaning">Upholstery Cleaning</a></li>
+            <li><a href="services.html#window-cleaning">Window Cleaning</a></li>
+            <li><a href="services.html#carpet-cleaning">Carpet Cleaning</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a href="gallery.html" class="nav-link">Gallery</a></li>
+        <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+        <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="header-actions">
+      <a href="contact.html" class="btn btn-primary">Get a Quote</a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ PAGE HEADER ============ -->
+<section class="page-header">
+  <div class="container">
+    <span class="eyebrow">Our Services</span>
+    <h1>Professional Cleaning for Every Space</h1>
+    <p>From routine home cleaning to detailed commercial services, we provide reliable solutions tailored to your needs.</p>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section class="section">
+  <div class="container">
+
+    <div class="filter-bar services-filter">
+      <button class="filter-btn active" data-filter="all">All Services</button>
+      <button class="filter-btn" data-filter="residential">Residential</button>
+      <button class="filter-btn" data-filter="commercial">Commercial</button>
+      <button class="filter-btn" data-filter="specialty">Specialty</button>
+    </div>
+
+    <div class="services-grid">
+
+      <div class="service-item" data-category="residential" id="move-in-move-out">
+        <div class="service-card">
+          <div class="service-card-image"><img src="https://images.unsplash.com/photo-1757742690834-aa581b9f53b2?q=80&w=800&auto=format&fit=crop" alt="Empty, freshly cleaned room with wooden floor and large window, ready for move-in"></div>
+          <div class="service-card-body">
+            <div class="service-card-top">
+              <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8l-9-5-9 5 9 5 9-5z"></path><path d="M3 8v8l9 5 9-5V8"></path><line x1="12" y1="13" x2="12" y2="21"></line></svg></div>
+              <span class="badge">Residential</span>
+            </div>
+            <h3>Move In / Move Out Cleaning</h3>
+            <p>A detailed cleaning service designed to prepare your home for moving in or leaving.</p>
+            <ul class="service-features">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Interior cabinets and closets</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Appliance cleaning</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Walls, switches and baseboards</li>
+            </ul>
+            <a href="contact.html?service=move-in-move-out" class="service-link">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="service-item" data-category="residential" id="residential-cleaning">
+        <div class="service-card">
+          <div class="service-card-image"><img src="https://images.unsplash.com/photo-1758273705627-937374bfa978?q=80&w=800&auto=format&fit=crop" alt="Cleaner vacuuming a bright, modern living room"></div>
+          <div class="service-card-body">
+            <div class="service-card-top">
+              <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"></path><path d="M5 10v10h14V10"></path><path d="M9 20v-6h6v6"></path></svg></div>
+              <span class="badge">Residential</span>
+            </div>
+            <h3>Residential Cleaning</h3>
+            <p>Reliable home cleaning services designed to keep your living space fresh, clean and comfortable.</p>
+            <ul class="service-features">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Kitchen and bathrooms</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Living areas and bedrooms</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Dusting and vacuuming</li>
+            </ul>
+            <a href="contact.html?service=residential" class="service-link">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="service-item" data-category="commercial" id="commercial-cleaning">
+        <div class="service-card">
+          <div class="service-card-image"><img src="https://images.unsplash.com/photo-1577412647305-991150c7d163?q=80&w=800&auto=format&fit=crop" alt="Spotless open-plan office with rows of desks"></div>
+          <div class="service-card-body">
+            <div class="service-card-top">
+              <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20"></rect><line x1="4" y1="9" x2="20" y2="9"></line><line x1="4" y1="14" x2="20" y2="14"></line><line x1="4" y1="19" x2="20" y2="19"></line><line x1="9" y1="2" x2="9" y2="22"></line><line x1="15" y1="2" x2="15" y2="22"></line></svg></div>
+              <span class="badge">Commercial</span>
+            </div>
+            <h3>Commercial Cleaning</h3>
+            <p>Professional cleaning solutions for offices and commercial spaces.</p>
+            <ul class="service-features">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Offices and workspaces</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Restrooms and kitchens</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Waste and recycling</li>
+            </ul>
+            <a href="contact.html?service=commercial" class="service-link">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="service-item" data-category="specialty" id="upholstery-cleaning">
+        <div class="service-card">
+          <div class="service-card-image"><img src="https://images.unsplash.com/photo-1686178827149-6d55c72d81df?q=80&w=800&auto=format&fit=crop" alt="Technician vacuuming an upholstered ottoman"></div>
+          <div class="service-card-body">
+            <div class="service-card-top">
+              <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13V8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v5"></path><rect x="2" y="13" width="20" height="6" rx="2"></rect><line x1="4" y1="19" x2="4" y2="21"></line><line x1="20" y1="19" x2="20" y2="21"></line></svg></div>
+              <span class="badge">Specialty</span>
+            </div>
+            <h3>Upholstery Cleaning</h3>
+            <p>Professional deep cleaning for sofas, chairs and other upholstered furniture.</p>
+            <ul class="service-features">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Fabric deep cleaning</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Stain treatment</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Odor removal</li>
+            </ul>
+            <a href="contact.html?service=upholstery" class="service-link">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="service-item" data-category="specialty" id="window-cleaning">
+        <div class="service-card">
+          <div class="service-card-image"><img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=800&auto=format&fit=crop" alt="Cleaner wiping down interior window shutters"></div>
+          <div class="service-card-body">
+            <div class="service-card-top">
+              <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="1"></rect><line x1="12" y1="3" x2="12" y2="21"></line><line x1="3" y1="12" x2="21" y2="12"></line></svg></div>
+              <span class="badge">Specialty</span>
+            </div>
+            <h3>Window Cleaning</h3>
+            <p>Professional interior and exterior window cleaning for a clear and polished finish.</p>
+            <ul class="service-features">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Interior windows</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Exterior windows</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Frames and glass detailing</li>
+            </ul>
+            <a href="contact.html?service=window" class="service-link">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="service-item" data-category="specialty" id="carpet-cleaning">
+        <div class="service-card">
+          <div class="service-card-image"><img src="https://images.unsplash.com/photo-1742483359033-13315b247c74?q=80&w=800&auto=format&fit=crop" alt="Technician steam cleaning a carpet in a bright room"></div>
+          <div class="service-card-body">
+            <div class="service-card-top">
+              <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg></div>
+              <span class="badge">Specialty</span>
+            </div>
+            <h3>Carpet Cleaning</h3>
+            <p>Deep carpet cleaning to remove dirt and refresh your space.</p>
+            <ul class="service-features">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Deep cleaning</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Stain treatment</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Odor removal</li>
+            </ul>
+            <a href="contact.html?service=carpet" class="service-link">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES PAGE CTA ============ -->
+<section class="cta-wrap no-top-pad">
+  <div class="container">
+    <div class="cta-section">
+      <h2>Ready for a Cleaner Space?</h2>
+      <p>Get in touch with our team today and receive a personalized quote for your cleaning needs.</p>
+      <div class="cta-actions">
+        <a href="contact.html" class="btn btn-primary btn-lg">Get a Free Quote</a>
+        <a href="contact.html" class="btn btn-outline-light btn-lg">Contact Us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="container footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="brand">
+        <svg class="brand-mark" viewBox="0 0 42 42" fill="none">
+          <rect width="42" height="42" rx="10" fill="#123563"/>
+          <path d="M12 21.5L18 27L30 14" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="30" cy="14" r="2.2" fill="#6fa8dc"/>
+        </svg>
+        <span class="brand-text">
+          <span class="brand-name">Grand Shine</span>
+          <span class="brand-sub">Cleaning Services</span>
+        </span>
+      </a>
+      <p>Professional, insured cleaning for homes and businesses. Reliable service, every visit.</p>
+      <div class="footer-social">
+        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 9H15V6.5h-1.75C11.57 6.5 10.5 7.6 10.5 9.4V11H9v2.5h1.5V21h3v-7.5H15l.5-2.5h-2V9.6c0-.4.2-.6.6-.6z"></path></svg></a>
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle></svg></a>
+        <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.94 8.5H4V20h2.94V8.5zM5.47 4a1.7 1.7 0 1 0 0 3.4 1.7 1.7 0 0 0 0-3.4zM20 20h-2.94v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97V20H10.1V8.5h2.82v1.57h.04c.39-.74 1.35-1.52 2.78-1.52 2.97 0 3.52 1.96 3.52 4.5V20z"></path></svg></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="services.html#residential-cleaning">Residential Cleaning</a></li>
+        <li><a href="services.html#commercial-cleaning">Commercial Cleaning</a></li>
+        <li><a href="services.html#move-in-move-out">Move In / Move Out</a></li>
+        <li><a href="services.html#upholstery-cleaning">Upholstery Cleaning</a></li>
+        <li><a href="services.html#window-cleaning">Window Cleaning</a></li>
+        <li><a href="services.html#carpet-cleaning">Carpet Cleaning</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li class="footer-contact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          <span>(555) 213-4470</span>
+        </li>
+        <li class="footer-contact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="M22 6l-10 7L2 6"></path></svg>
+          <span>info@grandshinecleaning.com</span>
+        </li>
+        <li class="footer-contact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          <span>Millbrook &amp; surrounding areas</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>&copy; <span id="current-year">2026</span> Grand Shine Cleaning Services. All rights reserved.</span>
+  </div>
+</footer>
+
+<script src="js/script.js"></script>
+</body>
+</html>
