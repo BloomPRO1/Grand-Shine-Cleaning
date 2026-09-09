@@ -13,7 +13,7 @@
   "use strict";
 
   var DRIVE_FOLDER_ID = "1dv7J3JLVxEF3GKZ92K4zdDz6M6lae2cc";
-  var DRIVE_API_KEY = "PASTE_RESTRICTED_DRIVE_API_KEY_HERE";
+  var DRIVE_API_KEY = "AIzaSyCRKbUEQYI9XBeGsxslNrgFiZMqV0kPujk";
 
   var loadingEl = document.getElementById("gallery-loading");
   var gridEl = document.getElementById("gallery-grid");
