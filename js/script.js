@@ -2,6 +2,15 @@
 (function () {
   "use strict";
 
+  /* ---------- Lock date pickers so past ("expired") dates can't be picked ---------- */
+  (function () {
+    var d = new Date();
+    var todayISO = d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+    document.querySelectorAll('input[type="date"]').forEach(function (input) {
+      input.min = todayISO;
+    });
+  })();
+
   /* ---------- Mobile navigation ---------- */
   var hamburger = document.getElementById("hamburger");
   var mainNav = document.getElementById("main-nav");
@@ -114,10 +123,56 @@
     }, { passive: true });
   }
 
-  /* ---------- Contact form (submits via FormSubmit.co) ---------- */
-  var contactForm = document.getElementById("contact-form");
-  var successMessage = document.getElementById("form-success");
-  var errorMessage = document.getElementById("form-error");
+  /* ---------- Quote/contact forms (submit via FormSubmit.co) ---------- */
+  // Shared by the standalone Contact page form and the Services page
+  // "Learn more" popup form — both post to the same inbox.
+  function bindQuoteForm(form, successMessage, errorMessage) {
+    if (!form) return;
+    var submitBtn = form.querySelector('button[type="submit"]');
+    var originalLabel = submitBtn ? submitBtn.textContent : "";
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      if (errorMessage) errorMessage.classList.remove("show");
+      if (successMessage) successMessage.classList.remove("show");
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Sending...";
+      }
+
+      fetch(form.action, {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: new FormData(form)
+      })
+        .then(function (response) {
+          if (!response.ok) throw new Error("Request failed");
+          if (successMessage) {
+            successMessage.classList.add("show");
+            successMessage.scrollIntoView({ behavior: "smooth", block: "center" });
+          }
+          form.reset();
+        })
+        .catch(function () {
+          if (errorMessage) {
+            errorMessage.classList.add("show");
+            errorMessage.scrollIntoView({ behavior: "smooth", block: "center" });
+          }
+        })
+        .finally(function () {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalLabel;
+          }
+        });
+    });
+  }
 
   // Pre-select "Service Required" when arriving via a service's "Learn more"
   // link, e.g. contact.html?service=window
@@ -129,50 +184,81 @@
     }
   }
 
-  if (contactForm) {
-    var submitBtn = contactForm.querySelector('button[type="submit"]');
+  bindQuoteForm(
+    document.getElementById("contact-form"),
+    document.getElementById("form-success"),
+    document.getElementById("form-error")
+  );
 
-    contactForm.addEventListener("submit", function (e) {
-      e.preventDefault();
+  /* ---------- Services page: "Learn more" opens an in-page popup ---------- */
+  /* with the service details on the left and a quote form on the right, */
+  /* instead of navigating away to the Contact page. */
+  var serviceModal = document.getElementById("service-modal");
+  if (serviceModal) {
+    var modalCloseBtn = document.getElementById("service-modal-close");
+    var modalOverlay = serviceModal.querySelector("[data-modal-dismiss]");
+    var modalImage = document.getElementById("modal-service-image");
+    var modalIcon = document.getElementById("modal-service-icon");
+    var modalBadge = document.getElementById("modal-service-badge");
+    var modalTitle = document.getElementById("modal-service-title");
+    var modalDesc = document.getElementById("modal-service-desc");
+    var modalFeatures = document.getElementById("modal-service-features");
+    var modalServiceSelect = document.getElementById("modal-service-select");
+    var lastFocusedEl = null;
 
-      if (!contactForm.checkValidity()) {
-        contactForm.reportValidity();
-        return;
+    function openServiceModal(trigger) {
+      var card = trigger.closest(".service-card");
+      if (!card) return;
+
+      var cardImage = card.querySelector(".service-card-image img");
+      var cardIcon = card.querySelector(".service-icon");
+      var cardBadge = card.querySelector(".badge");
+      var cardTitle = card.querySelector("h3");
+      var cardDesc = card.querySelector(".service-card-body > p");
+      var cardFeatures = card.querySelector(".service-features");
+      var slug = trigger.getAttribute("data-service") || "";
+
+      if (cardImage) {
+        modalImage.src = cardImage.src;
+        modalImage.alt = cardImage.alt;
+      }
+      if (cardIcon) modalIcon.innerHTML = cardIcon.innerHTML;
+      if (cardBadge) modalBadge.textContent = cardBadge.textContent;
+      if (cardTitle) modalTitle.textContent = cardTitle.textContent;
+      if (cardDesc) modalDesc.textContent = cardDesc.textContent;
+      if (cardFeatures) modalFeatures.innerHTML = cardFeatures.innerHTML;
+      if (modalServiceSelect && slug && modalServiceSelect.querySelector('option[value="' + slug + '"]')) {
+        modalServiceSelect.value = slug;
       }
 
-      if (errorMessage) errorMessage.classList.remove("show");
-      if (successMessage) successMessage.classList.remove("show");
-      if (submitBtn) {
-        submitBtn.disabled = true;
-        submitBtn.textContent = "Sending...";
-      }
+      lastFocusedEl = trigger;
+      serviceModal.classList.add("open");
+      serviceModal.setAttribute("aria-hidden", "false");
+      document.body.classList.add("modal-open");
+      if (modalCloseBtn) modalCloseBtn.focus();
+    }
 
-      fetch(contactForm.action, {
-        method: "POST",
-        headers: { Accept: "application/json" },
-        body: new FormData(contactForm)
-      })
-        .then(function (response) {
-          if (!response.ok) throw new Error("Request failed");
-          if (successMessage) {
-            successMessage.classList.add("show");
-            successMessage.scrollIntoView({ behavior: "smooth", block: "center" });
-          }
-          contactForm.reset();
-        })
-        .catch(function () {
-          if (errorMessage) {
-            errorMessage.classList.add("show");
-            errorMessage.scrollIntoView({ behavior: "smooth", block: "center" });
-          }
-        })
-        .finally(function () {
-          if (submitBtn) {
-            submitBtn.disabled = false;
-            submitBtn.textContent = "Request a Quote";
-          }
-        });
+    function closeServiceModal() {
+      serviceModal.classList.remove("open");
+      serviceModal.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("modal-open");
+      if (lastFocusedEl) lastFocusedEl.focus();
+    }
+
+    document.querySelectorAll(".js-learn-more").forEach(function (btn) {
+      btn.addEventListener("click", function () { openServiceModal(btn); });
     });
+    if (modalCloseBtn) modalCloseBtn.addEventListener("click", closeServiceModal);
+    if (modalOverlay) modalOverlay.addEventListener("click", closeServiceModal);
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && serviceModal.classList.contains("open")) closeServiceModal();
+    });
+
+    bindQuoteForm(
+      document.getElementById("modal-contact-form"),
+      document.getElementById("modal-form-success"),
+      document.getElementById("modal-form-error")
+    );
   }
 
   /* ---------- Scroll reveal ---------- */
