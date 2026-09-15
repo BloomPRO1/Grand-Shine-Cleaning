@@ -461,6 +461,7 @@ svg { display: block; }
   grid-template-columns: repeat(3, 1fr);
   gap: 28px;
 }
+.service-item { display: flex; }
 .service-card {
   background: var(--white);
   border: 1px solid var(--gray-200);
@@ -469,6 +470,7 @@ svg { display: block; }
   box-shadow: var(--shadow-sm);
   transition: box-shadow 0.22s ease, border-color 0.22s ease, transform 0.22s ease;
   display: flex; flex-direction: column;
+  width: 100%;
 }
 .service-card:hover { box-shadow: var(--shadow-md); border-color: var(--blue-400); transform: translateY(-4px); }
 .service-card-image { width: 100%; aspect-ratio: 16 / 10; overflow: hidden; background: var(--gray-100); }
@@ -496,8 +498,8 @@ svg { display: block; }
   padding: 6px 12px;
   border-radius: var(--radius-sm);
 }
-.service-card h3 { font-size: 19px; margin-bottom: 10px; }
-.service-card > p { font-size: 14.5px; color: var(--gray-500); margin-bottom: 20px; }
+.service-card h3 { font-size: 19px; margin-bottom: 10px; min-height: 48px; }
+.service-card > p { font-size: 14.5px; color: var(--gray-500); margin-bottom: 20px; min-height: 72px; }
 .service-features { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; flex: 1; }
 .service-features li { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--gray-600); }
 .service-features svg { width: 16px; height: 16px; color: var(--blue-600); flex-shrink: 0; }
@@ -929,12 +931,12 @@ body.modal-open { overflow: hidden; }
   position: relative;
   z-index: 1;
   background: var(--white);
-  width: min(1080px, 94vw);
-  max-height: 90vh;
-  margin: 5vh auto;
+  width: min(1220px, 97vw);
+  max-height: 96vh;
+  margin: 2vh auto;
   border-radius: var(--radius-lg);
   overflow-y: auto;
-  padding: 44px;
+  padding: 30px 36px;
   box-shadow: var(--shadow-lg);
 }
 .service-modal-close {
@@ -952,33 +954,106 @@ body.modal-open { overflow: hidden; }
 .service-modal-close svg { width: 18px; height: 18px; }
 .service-modal-grid {
   display: grid;
-  grid-template-columns: 1fr 380px;
-  gap: 44px;
+  grid-template-columns: 1fr 360px;
+  gap: 36px;
   align-items: start;
 }
-.service-modal-image {
+
+/* ---------- Modal photo carousel ---------- */
+.service-modal-carousel {
+  position: relative;
   border-radius: var(--radius-md);
   overflow: hidden;
-  margin-bottom: 24px;
-  aspect-ratio: 16 / 9;
+  margin-bottom: 16px;
+  height: clamp(170px, 32vh, 340px);
   background: var(--gray-100);
 }
-.service-modal-image img { width: 100%; height: 100%; object-fit: cover; }
-.service-modal-info h3 { font-size: 26px; margin: 16px 0 12px; }
-.service-modal-info > p { font-size: 15.5px; color: var(--gray-500); line-height: 1.7; margin-bottom: 24px; }
-.service-modal-included-title { font-weight: 700; font-size: 14px; color: var(--navy-900); margin-bottom: 12px; }
-.service-modal-form .form-card { padding: 32px; }
+.modal-carousel-track {
+  display: flex;
+  height: 100%;
+  transition: transform 0.35s ease;
+  touch-action: pan-y;
+}
+.modal-carousel-track img {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+.modal-carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 34px; height: 34px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 50%;
+  color: var(--navy-900);
+  box-shadow: var(--shadow-sm);
+  transition: background 0.18s ease;
+}
+.modal-carousel-arrow:hover { background: var(--white); }
+.modal-carousel-arrow svg { width: 18px; height: 18px; }
+.modal-carousel-prev { left: 10px; }
+.modal-carousel-next { right: 10px; }
+.modal-carousel-dots {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+}
+.modal-carousel-dot {
+  width: 7px; height: 7px;
+  padding: 0;
+  border: none;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.65);
+  cursor: pointer;
+  transition: width 0.2s ease, background 0.2s ease;
+}
+.modal-carousel-dot.active { width: 18px; background: var(--white); }
+.service-modal-carousel.single .modal-carousel-arrow,
+.service-modal-carousel.single .modal-carousel-dots { display: none; }
+
+.service-modal-info h3 { font-size: 21px; margin: 10px 0 8px; }
+.service-modal-info > p { font-size: 14px; color: var(--gray-500); line-height: 1.55; margin-bottom: 14px; }
+.service-modal-included-title { font-weight: 700; font-size: 13.5px; color: var(--navy-900); margin-bottom: 8px; }
+.service-modal-info .service-features { gap: 6px; margin-bottom: 0; }
+.service-modal-form .form-card { padding: 22px 24px; }
 .service-modal-form-title {
-  font-size: 18px;
+  font-size: 16px;
   text-align: center;
-  margin-bottom: 24px;
+  margin-bottom: 14px;
   text-transform: uppercase;
   letter-spacing: 0.03em;
   color: var(--navy-900);
 }
+.service-modal-form .form-row { gap: 14px; margin-bottom: 12px; }
+.service-modal-form .form-group { margin-bottom: 12px; }
+.service-modal-form .form-group label { font-size: 12.5px; margin-bottom: 5px; }
+.service-modal-form .form-group input,
+.service-modal-form .form-group select,
+.service-modal-form .form-group textarea { padding: 9px 12px; font-size: 13.5px; }
+.service-modal-form .form-group textarea { min-height: 52px; }
 @media (max-width: 900px) {
-  .service-modal-panel { padding: 28px 20px; margin: 3vh auto; }
-  .service-modal-grid { grid-template-columns: 1fr; gap: 32px; }
+  .service-modal-panel { padding: 24px 18px; margin: 2vh auto; max-height: 98vh; }
+  .service-modal-grid { grid-template-columns: 1fr; gap: 24px; }
+}
+@media (max-height: 800px) {
+  .service-modal-panel { margin: 1vh auto; max-height: 98vh; padding: 20px 32px; }
+  .service-modal-carousel { height: clamp(150px, 26vh, 260px); margin-bottom: 12px; }
+  .service-modal-info h3 { margin: 6px 0 6px; }
+  .service-modal-info > p { margin-bottom: 10px; }
+  .service-modal-included-title { margin-bottom: 6px; }
+  .service-modal-form .form-card { padding: 16px 22px; }
+  .service-modal-form-title { margin-bottom: 10px; }
+  .service-modal-form .form-row,
+  .service-modal-form .form-group { margin-bottom: 8px; }
 }
 
 /* ---------- Reveal-on-scroll ----------

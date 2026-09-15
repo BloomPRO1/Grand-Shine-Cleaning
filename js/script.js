@@ -197,7 +197,6 @@
   if (serviceModal) {
     var modalCloseBtn = document.getElementById("service-modal-close");
     var modalOverlay = serviceModal.querySelector("[data-modal-dismiss]");
-    var modalImage = document.getElementById("modal-service-image");
     var modalIcon = document.getElementById("modal-service-icon");
     var modalBadge = document.getElementById("modal-service-badge");
     var modalTitle = document.getElementById("modal-service-title");
@@ -206,10 +205,67 @@
     var modalServiceSelect = document.getElementById("modal-service-select");
     var lastFocusedEl = null;
 
+    /* ---------- Photo carousel (swipe/arrows/dots) ---------- */
+    var carouselEl = document.getElementById("modal-carousel");
+    var carouselTrack = document.getElementById("modal-carousel-track");
+    var carouselDots = document.getElementById("modal-carousel-dots");
+    var carouselPrev = document.getElementById("modal-carousel-prev");
+    var carouselNext = document.getElementById("modal-carousel-next");
+    var carouselSlide = 0;
+    var carouselCount = 0;
+    var touchStartX = null;
+
+    function goToSlide(index) {
+      if (!carouselCount) return;
+      carouselSlide = (index + carouselCount) % carouselCount;
+      carouselTrack.style.transform = "translateX(-" + (carouselSlide * 100) + "%)";
+      carouselDots.querySelectorAll(".modal-carousel-dot").forEach(function (dot, i) {
+        dot.classList.toggle("active", i === carouselSlide);
+      });
+    }
+
+    function renderCarousel(images) {
+      carouselTrack.innerHTML = "";
+      carouselDots.innerHTML = "";
+      carouselSlide = 0;
+      carouselCount = images.length;
+      carouselEl.classList.toggle("single", carouselCount <= 1);
+
+      images.forEach(function (photo, i) {
+        var img = document.createElement("img");
+        img.src = photo.src;
+        img.alt = photo.alt || "";
+        carouselTrack.appendChild(img);
+
+        var dot = document.createElement("button");
+        dot.type = "button";
+        dot.className = "modal-carousel-dot" + (i === 0 ? " active" : "");
+        dot.setAttribute("aria-label", "Go to photo " + (i + 1));
+        dot.addEventListener("click", function () { goToSlide(i); });
+        carouselDots.appendChild(dot);
+      });
+      carouselTrack.style.transform = "translateX(0)";
+    }
+
+    if (carouselPrev) carouselPrev.addEventListener("click", function () { goToSlide(carouselSlide - 1); });
+    if (carouselNext) carouselNext.addEventListener("click", function () { goToSlide(carouselSlide + 1); });
+    if (carouselTrack) {
+      carouselTrack.addEventListener("touchstart", function (e) {
+        touchStartX = e.touches[0].clientX;
+      }, { passive: true });
+      carouselTrack.addEventListener("touchend", function (e) {
+        if (touchStartX === null) return;
+        var deltaX = e.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(deltaX) > 40) goToSlide(carouselSlide + (deltaX < 0 ? 1 : -1));
+        touchStartX = null;
+      });
+    }
+
     function openServiceModal(trigger) {
       var card = trigger.closest(".service-card");
       if (!card) return;
 
+      var cardImageWrap = card.querySelector(".service-card-image");
       var cardImage = card.querySelector(".service-card-image img");
       var cardIcon = card.querySelector(".service-icon");
       var cardBadge = card.querySelector(".badge");
@@ -218,10 +274,17 @@
       var cardFeatures = card.querySelector(".service-features");
       var slug = trigger.getAttribute("data-service") || "";
 
-      if (cardImage) {
-        modalImage.src = cardImage.src;
-        modalImage.alt = cardImage.alt;
-      }
+      var galleryData = cardImageWrap ? cardImageWrap.getAttribute("data-gallery") : "";
+      var images = galleryData
+        ? galleryData.split(";;").map(function (entry) {
+            var parts = entry.split("|");
+            return { src: parts[0], alt: parts[1] || "" };
+          })
+        : cardImage
+          ? [{ src: cardImage.src, alt: cardImage.alt }]
+          : [];
+      renderCarousel(images);
+
       if (cardIcon) modalIcon.innerHTML = cardIcon.innerHTML;
       if (cardBadge) modalBadge.textContent = cardBadge.textContent;
       if (cardTitle) modalTitle.textContent = cardTitle.textContent;
@@ -251,7 +314,10 @@
     if (modalCloseBtn) modalCloseBtn.addEventListener("click", closeServiceModal);
     if (modalOverlay) modalOverlay.addEventListener("click", closeServiceModal);
     document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape" && serviceModal.classList.contains("open")) closeServiceModal();
+      if (!serviceModal.classList.contains("open")) return;
+      if (e.key === "Escape") closeServiceModal();
+      if (e.key === "ArrowLeft") goToSlide(carouselSlide - 1);
+      if (e.key === "ArrowRight") goToSlide(carouselSlide + 1);
     });
 
     bindQuoteForm(
