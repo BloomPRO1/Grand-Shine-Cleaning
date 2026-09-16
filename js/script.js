@@ -214,6 +214,24 @@
     var carouselSlide = 0;
     var carouselCount = 0;
     var touchStartX = null;
+    var carouselTimer = null;
+    var CAROUSEL_INTERVAL = 4000;
+
+    function stopCarouselAutoplay() {
+      if (carouselTimer) {
+        clearInterval(carouselTimer);
+        carouselTimer = null;
+      }
+    }
+
+    function startCarouselAutoplay() {
+      stopCarouselAutoplay();
+      if (carouselCount > 1) {
+        carouselTimer = setInterval(function () {
+          goToSlide(carouselSlide + 1);
+        }, CAROUSEL_INTERVAL);
+      }
+    }
 
     function goToSlide(index) {
       if (!carouselCount) return;
@@ -241,14 +259,15 @@
         dot.type = "button";
         dot.className = "modal-carousel-dot" + (i === 0 ? " active" : "");
         dot.setAttribute("aria-label", "Go to photo " + (i + 1));
-        dot.addEventListener("click", function () { goToSlide(i); });
+        dot.addEventListener("click", function () { goToSlide(i); startCarouselAutoplay(); });
         carouselDots.appendChild(dot);
       });
       carouselTrack.style.transform = "translateX(0)";
+      startCarouselAutoplay();
     }
 
-    if (carouselPrev) carouselPrev.addEventListener("click", function () { goToSlide(carouselSlide - 1); });
-    if (carouselNext) carouselNext.addEventListener("click", function () { goToSlide(carouselSlide + 1); });
+    if (carouselPrev) carouselPrev.addEventListener("click", function () { goToSlide(carouselSlide - 1); startCarouselAutoplay(); });
+    if (carouselNext) carouselNext.addEventListener("click", function () { goToSlide(carouselSlide + 1); startCarouselAutoplay(); });
     if (carouselTrack) {
       carouselTrack.addEventListener("touchstart", function (e) {
         touchStartX = e.touches[0].clientX;
@@ -258,7 +277,12 @@
         var deltaX = e.changedTouches[0].clientX - touchStartX;
         if (Math.abs(deltaX) > 40) goToSlide(carouselSlide + (deltaX < 0 ? 1 : -1));
         touchStartX = null;
+        startCarouselAutoplay();
       });
+    }
+    if (carouselEl) {
+      carouselEl.addEventListener("mouseenter", stopCarouselAutoplay);
+      carouselEl.addEventListener("mouseleave", startCarouselAutoplay);
     }
 
     function openServiceModal(trigger) {
@@ -305,6 +329,7 @@
       serviceModal.classList.remove("open");
       serviceModal.setAttribute("aria-hidden", "true");
       document.body.classList.remove("modal-open");
+      stopCarouselAutoplay();
       if (lastFocusedEl) lastFocusedEl.focus();
     }
 
@@ -316,8 +341,8 @@
     document.addEventListener("keydown", function (e) {
       if (!serviceModal.classList.contains("open")) return;
       if (e.key === "Escape") closeServiceModal();
-      if (e.key === "ArrowLeft") goToSlide(carouselSlide - 1);
-      if (e.key === "ArrowRight") goToSlide(carouselSlide + 1);
+      if (e.key === "ArrowLeft") { goToSlide(carouselSlide - 1); startCarouselAutoplay(); }
+      if (e.key === "ArrowRight") { goToSlide(carouselSlide + 1); startCarouselAutoplay(); }
     });
 
     bindQuoteForm(

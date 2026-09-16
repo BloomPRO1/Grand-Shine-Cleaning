@@ -954,7 +954,7 @@ body.modal-open { overflow: hidden; }
 .service-modal-close svg { width: 18px; height: 18px; }
 .service-modal-grid {
   display: grid;
-  grid-template-columns: 1fr 360px;
+  grid-template-columns: 1fr 440px;
   gap: 36px;
   align-items: start;
 }
@@ -1024,22 +1024,23 @@ body.modal-open { overflow: hidden; }
 .service-modal-info > p { font-size: 14px; color: var(--gray-500); line-height: 1.55; margin-bottom: 14px; }
 .service-modal-included-title { font-weight: 700; font-size: 13.5px; color: var(--navy-900); margin-bottom: 8px; }
 .service-modal-info .service-features { gap: 6px; margin-bottom: 0; }
-.service-modal-form .form-card { padding: 22px 24px; }
+.service-modal-form .form-card { padding: 30px 32px; }
 .service-modal-form-title {
-  font-size: 16px;
+  font-size: 18px;
   text-align: center;
-  margin-bottom: 14px;
+  margin-bottom: 18px;
   text-transform: uppercase;
   letter-spacing: 0.03em;
   color: var(--navy-900);
 }
-.service-modal-form .form-row { gap: 14px; margin-bottom: 12px; }
-.service-modal-form .form-group { margin-bottom: 12px; }
-.service-modal-form .form-group label { font-size: 12.5px; margin-bottom: 5px; }
+.service-modal-form .form-row { gap: 16px; margin-bottom: 16px; }
+.service-modal-form .form-group { margin-bottom: 16px; }
+.service-modal-form .form-group label { font-size: 13.5px; margin-bottom: 6px; }
 .service-modal-form .form-group input,
 .service-modal-form .form-group select,
-.service-modal-form .form-group textarea { padding: 9px 12px; font-size: 13.5px; }
-.service-modal-form .form-group textarea { min-height: 52px; }
+.service-modal-form .form-group textarea { padding: 12px 14px; font-size: 15px; }
+.service-modal-form .form-group textarea { min-height: 76px; }
+.service-modal-form .btn { padding: 14px 20px; font-size: 15.5px; }
 @media (max-width: 900px) {
   .service-modal-panel { padding: 24px 18px; margin: 2vh auto; max-height: 98vh; }
   .service-modal-grid { grid-template-columns: 1fr; gap: 24px; }
