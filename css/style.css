@@ -965,7 +965,7 @@ body.modal-open { overflow: hidden; }
   border-radius: var(--radius-md);
   overflow: hidden;
   margin-bottom: 16px;
-  height: clamp(240px, 46vh, 460px);
+  height: clamp(280px, 54vh, 520px);
   background: var(--gray-100);
 }
 .modal-carousel-track {
@@ -978,7 +978,7 @@ body.modal-open { overflow: hidden; }
   flex: 0 0 100%;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   user-select: none;
   -webkit-user-drag: none;
 }
@@ -1046,7 +1046,7 @@ body.modal-open { overflow: hidden; }
 }
 @media (max-height: 800px) {
   .service-modal-panel { margin: 1vh auto; max-height: 98vh; padding: 20px 32px; }
-  .service-modal-carousel { height: clamp(200px, 38vh, 340px); margin-bottom: 12px; }
+  .service-modal-carousel { height: clamp(220px, 42vh, 380px); margin-bottom: 12px; }
   .service-modal-info h3 { margin: 6px 0 6px; }
   .service-modal-info > p { margin-bottom: 10px; }
   .service-modal-included-title { margin-bottom: 6px; }
